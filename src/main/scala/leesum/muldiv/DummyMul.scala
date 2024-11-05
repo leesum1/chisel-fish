@@ -1,7 +1,11 @@
-package leesum
+package leesum.muldiv
 
 import chisel3._
 import chisel3.util.{Cat, Decoupled, Enum, MuxLookup, is, switch}
+import leesum.PipeLine
+import leesum.FuOP
+import leesum.GenVerilogHelper
+import leesum.SignExt
 
 class MulReq extends Bundle {
   private val mul_width = 64

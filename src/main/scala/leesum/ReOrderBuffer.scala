@@ -4,6 +4,7 @@ import chisel3._
 import chisel3.util._
 import leesum.Utils.MultiPortFIFOBase
 import leesum.lsu.{AGUWriteBack, LSUResp}
+import muldiv.FuMulDivResp
 
 class OperandByPassReq extends Bundle {
   val rs_addr = UInt(5.W)

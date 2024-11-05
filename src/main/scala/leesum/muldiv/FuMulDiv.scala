@@ -1,6 +1,7 @@
-package leesum
+package leesum.muldiv
 import chisel3._
 import chisel3.util.{Decoupled, RRArbiter}
+import leesum.GenVerilogHelper
 
 class FuMulDivResp extends Bundle {
   val data = UInt(64.W)

@@ -10,6 +10,7 @@ import leesum.fronten.IFUTop
 import leesum.lsu.LSUTop
 import leesum.mmu_sv39.MMU
 import leesum.moniter.{DifftestPort, MonitorTop, PerfPort}
+import leesum.muldiv.FuMulDiv
 
 // create FishCore config
 case class FishCoreConfig(

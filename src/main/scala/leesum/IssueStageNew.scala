@@ -5,13 +5,14 @@ import chisel3.util._
 import leesum.Cache.DcacheConst
 import leesum.Utils.MultiPortFIFOUseMEM
 import leesum.lsu.{AtomicOP, LSUReq}
+import muldiv.DivReq
 
 class FuReq extends Bundle {
 
   val alu = Vec(2, Decoupled(new AluReq()))
   val branch_0 = Decoupled(new FuBranchReq())
   val lsu_0 = Decoupled(new LSUReq)
-  val mul_0 = Decoupled(new MulReq)
+  val mul_0 = Decoupled(new muldiv.MulReq)
   val div_0 = Decoupled(new DivReq)
 
   val csr_0 = Decoupled(new FuCsrReq)
@@ -92,7 +93,7 @@ class IssueStageNew(num_push_port: Int, num_pop_port: Int) extends Module {
   val alu_pipe_vec = Wire(Vec(2, Decoupled(new AluReq())))
   val branch_0_pipe = Wire(Decoupled(new FuBranchReq()))
   val lsu_0_pipe = Wire(Decoupled(new LSUReq))
-  val mul_0_pipe = Wire(Decoupled(new MulReq))
+  val mul_0_pipe = Wire(Decoupled(new muldiv.MulReq))
   val div_0_pipe = Wire(Decoupled(new DivReq))
 
   val csr_0_pipe = Wire(Decoupled(new FuCsrReq))
@@ -556,7 +557,7 @@ class IssueStageNew(num_push_port: Int, num_pop_port: Int) extends Module {
   )
 
   def dispatch_to_mul(
-      mul: DecoupledIO[MulReq],
+      mul: DecoupledIO[muldiv.MulReq],
       scb: ScoreBoardEntry,
       mul_allow_dispatch: Bool,
       op_bundle: operandBundle,
